@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.coursera.parallel.StudentAnalyticsTest" time="3.876" tests="6" errors="0" skipped="0" failures="3">
+<testsuite name="edu.coursera.parallel.StudentAnalyticsTest" time="4.074" tests="6" errors="0" skipped="0" failures="2">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib"/>
@@ -63,34 +63,22 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testAverageAgeOfEnrolledStudents" classname="edu.coursera.parallel.StudentAnalyticsTest" time="0.378"/>
-  <testcase name="testAverageAgeOfEnrolledStudentsPerf" classname="edu.coursera.parallel.StudentAnalyticsTest" time="0.989"/>
-  <testcase name="testMostCommonFirstNameOfInactiveStudents" classname="edu.coursera.parallel.StudentAnalyticsTest" time="0.968"/>
-  <testcase name="testMostCommonFirstNameOfInactiveStudentsPerf" classname="edu.coursera.parallel.StudentAnalyticsTest" time="1.093">
-    <failure message="Expected speedup to be at least 4.0 but was 3.325242718446602" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Expected speedup to be at least 4.0 but was 3.325242718446602
+  <testcase name="testAverageAgeOfEnrolledStudents" classname="edu.coursera.parallel.StudentAnalyticsTest" time="0.364"/>
+  <testcase name="testAverageAgeOfEnrolledStudentsPerf" classname="edu.coursera.parallel.StudentAnalyticsTest" time="0.924"/>
+  <testcase name="testMostCommonFirstNameOfInactiveStudents" classname="edu.coursera.parallel.StudentAnalyticsTest" time="1.13"/>
+  <testcase name="testMostCommonFirstNameOfInactiveStudentsPerf" classname="edu.coursera.parallel.StudentAnalyticsTest" time="1.069">
+    <failure message="Expected speedup to be at least 4.0 but was 3.3229166666666665" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Expected speedup to be at least 4.0 but was 3.3229166666666665
 	at junit.framework.Assert.fail(Assert.java:47)
 	at junit.framework.Assert.assertTrue(Assert.java:20)
 	at edu.coursera.parallel.StudentAnalyticsTest.testMostCommonFirstNameOfInactiveStudentsPerf(StudentAnalyticsTest.java:123)
 </failure>
   </testcase>
-  <testcase name="testCountNumberOfFailedStudentsOlderThan20" classname="edu.coursera.parallel.StudentAnalyticsTest" time="0.157">
-    <failure message="Mismatch in calculated values expected:&lt;716474&gt; but was:&lt;0&gt;" type="junit.framework.AssertionFailedError"><![CDATA[junit.framework.AssertionFailedError: Mismatch in calculated values expected:<716474> but was:<0>
+  <testcase name="testCountNumberOfFailedStudentsOlderThan20" classname="edu.coursera.parallel.StudentAnalyticsTest" time="0.201"/>
+  <testcase name="testCountNumberOfFailedStudentsOlderThan20Perf" classname="edu.coursera.parallel.StudentAnalyticsTest" time="0.386">
+    <failure message="Expected parallel version to run at least 1.2x faster but speedup was 0.9304347826086956" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Expected parallel version to run at least 1.2x faster but speedup was 0.9304347826086956
 	at junit.framework.Assert.fail(Assert.java:47)
-	at junit.framework.Assert.failNotEquals(Assert.java:280)
-	at junit.framework.Assert.assertEquals(Assert.java:64)
-	at junit.framework.Assert.assertEquals(Assert.java:198)
-	at edu.coursera.parallel.StudentAnalyticsTest.countNumberOfFailedStudentsOlderThan20Helper(StudentAnalyticsTest.java:140)
-	at edu.coursera.parallel.StudentAnalyticsTest.testCountNumberOfFailedStudentsOlderThan20(StudentAnalyticsTest.java:155)
-]]></failure>
-  </testcase>
-  <testcase name="testCountNumberOfFailedStudentsOlderThan20Perf" classname="edu.coursera.parallel.StudentAnalyticsTest" time="0.291">
-    <failure message="Mismatch in calculated values expected:&lt;716474&gt; but was:&lt;0&gt;" type="junit.framework.AssertionFailedError"><![CDATA[junit.framework.AssertionFailedError: Mismatch in calculated values expected:<716474> but was:<0>
-	at junit.framework.Assert.fail(Assert.java:47)
-	at junit.framework.Assert.failNotEquals(Assert.java:280)
-	at junit.framework.Assert.assertEquals(Assert.java:64)
-	at junit.framework.Assert.assertEquals(Assert.java:198)
-	at edu.coursera.parallel.StudentAnalyticsTest.countNumberOfFailedStudentsOlderThan20Helper(StudentAnalyticsTest.java:140)
-	at edu.coursera.parallel.StudentAnalyticsTest.testCountNumberOfFailedStudentsOlderThan20Perf(StudentAnalyticsTest.java:163)
-]]></failure>
+	at junit.framework.Assert.assertTrue(Assert.java:20)
+	at edu.coursera.parallel.StudentAnalyticsTest.testCountNumberOfFailedStudentsOlderThan20Perf(StudentAnalyticsTest.java:165)
+</failure>
   </testcase>
 </testsuite>

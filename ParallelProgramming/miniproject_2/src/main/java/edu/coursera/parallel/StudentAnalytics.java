@@ -158,6 +158,13 @@ public final class StudentAnalytics {
     public int countNumberOfFailedStudentsOlderThan20ParallelStream(
             final Student[] studentArray) {
         if (studentArray == null) throw new UnsupportedOperationException();
-        return 0;
+        int res = (int)Stream.of(studentArray)
+                                .parallel()
+                                .filter(s -> !s.checkIsCurrent())
+                                .filter(s -> s.getAge() > 20)
+                                .filter(s -> s.getGrade() < 65)
+                                .count();
+
+        return res;
     }
 }
