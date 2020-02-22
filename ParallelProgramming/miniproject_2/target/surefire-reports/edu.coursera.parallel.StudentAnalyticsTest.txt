@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: edu.coursera.parallel.StudentAnalyticsTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 3.878 sec <<< FAILURE! - in edu.coursera.parallel.StudentAnalyticsTest
+testMostCommonFirstNameOfInactiveStudentsPerf(edu.coursera.parallel.StudentAnalyticsTest)  Time elapsed: 1.093 sec  <<< FAILURE!
+junit.framework.AssertionFailedError: Expected speedup to be at least 4.0 but was 3.325242718446602
+	at junit.framework.Assert.fail(Assert.java:47)
+	at junit.framework.Assert.assertTrue(Assert.java:20)
+	at edu.coursera.parallel.StudentAnalyticsTest.testMostCommonFirstNameOfInactiveStudentsPerf(StudentAnalyticsTest.java:123)
+
+testCountNumberOfFailedStudentsOlderThan20(edu.coursera.parallel.StudentAnalyticsTest)  Time elapsed: 0.157 sec  <<< FAILURE!
+junit.framework.AssertionFailedError: Mismatch in calculated values expected:<716474> but was:<0>
+	at junit.framework.Assert.fail(Assert.java:47)
+	at junit.framework.Assert.failNotEquals(Assert.java:280)
+	at junit.framework.Assert.assertEquals(Assert.java:64)
+	at junit.framework.Assert.assertEquals(Assert.java:198)
+	at edu.coursera.parallel.StudentAnalyticsTest.countNumberOfFailedStudentsOlderThan20Helper(StudentAnalyticsTest.java:140)
+	at edu.coursera.parallel.StudentAnalyticsTest.testCountNumberOfFailedStudentsOlderThan20(StudentAnalyticsTest.java:155)
+
+testCountNumberOfFailedStudentsOlderThan20Perf(edu.coursera.parallel.StudentAnalyticsTest)  Time elapsed: 0.291 sec  <<< FAILURE!
+junit.framework.AssertionFailedError: Mismatch in calculated values expected:<716474> but was:<0>
+	at junit.framework.Assert.fail(Assert.java:47)
+	at junit.framework.Assert.failNotEquals(Assert.java:280)
+	at junit.framework.Assert.assertEquals(Assert.java:64)
+	at junit.framework.Assert.assertEquals(Assert.java:198)
+	at edu.coursera.parallel.StudentAnalyticsTest.countNumberOfFailedStudentsOlderThan20Helper(StudentAnalyticsTest.java:140)
+	at edu.coursera.parallel.StudentAnalyticsTest.testCountNumberOfFailedStudentsOlderThan20Perf(StudentAnalyticsTest.java:163)
+

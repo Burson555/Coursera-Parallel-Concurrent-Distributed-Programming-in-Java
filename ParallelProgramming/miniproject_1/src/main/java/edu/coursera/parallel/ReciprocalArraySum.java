@@ -181,6 +181,7 @@ public final class ReciprocalArraySum {
         lis[numTasks-1].compute();
         for (int i = 0; i < numTasks-1; i++) lis[i].join();
         for (int i = 0; i < numTasks; i++) sum += lis[i].getValue();
+            
         return sum;
     }
 }
