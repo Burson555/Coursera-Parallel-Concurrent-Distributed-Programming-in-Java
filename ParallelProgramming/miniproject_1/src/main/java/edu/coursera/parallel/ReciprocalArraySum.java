@@ -149,9 +149,10 @@ public final class ReciprocalArraySum {
         ReciprocalArraySumTask l = new ReciprocalArraySumTask(0, mid, input);
         ReciprocalArraySumTask r = new ReciprocalArraySumTask(mid, input.length, input);
         
-        l.fork();
-        r.compute();
-        l.join();
+        // l.fork();
+        // r.compute();
+        // l.join();
+        pool.invoke(l, r);
 
         return l.getValue() + r.getValue();
     }
@@ -177,9 +178,8 @@ public final class ReciprocalArraySum {
         for (int i = 0; i < numTasks; i++) 
             lis[i] = new ReciprocalArraySumTask(getChunkStartInclusive(i, numTasks, length),
                 getChunkEndExclusive(i, numTasks, length), input);
-        for (int i = 0; i < numTasks-1; i++) lis[i].fork();
-        lis[numTasks-1].compute();
-        for (int i = 0; i < numTasks-1; i++) lis[i].join();
+        for (int i = 0; i < numTasks; i++) lis[i].fork();
+        for (int i = 0; i < numTasks; i++) lis[i].join();
         for (int i = 0; i < numTasks; i++) sum += lis[i].getValue();
             
         return sum;

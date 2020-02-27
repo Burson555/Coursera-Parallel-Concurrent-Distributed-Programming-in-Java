@@ -112,7 +112,7 @@ public class ReciprocalArraySumTest extends TestCase {
     /**
      * Test that the two-task parallel implementation properly computes the results for a million-element array.
      */
-    public void testParSimpleTwoMillion() {z
+    public void testParSimpleTwoMillion() {
         final double minimalExpectedSpeedup = 1.5;
         final double speedup = parTestHelper(2_000_000, false, 2);
         final String errMsg = String.format("It was expected that the two-task parallel implementation would run at " +

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.coursera.parallel.ReciprocalArraySumTest" time="179.61" tests="4" errors="0" skipped="0" failures="2">
+<testsuite name="edu.coursera.parallel.OneDimAveragingPhaserTest" time="113.983" tests="1" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib"/>
     <property name="java.vm.version" value="25.221-b11"/>
     <property name="gopherProxySet" value="false"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/bosen/Library/Mobile Documents/com~apple~CloudDocs/Coursera_PCDProgramming/ParallelProgramming/miniproject_1"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/bosen/Library/Mobile Documents/com~apple~CloudDocs/Coursera_PCDProgramming/ParallelProgramming/miniproject_4"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/bosen/Library/Mobile Documents/com~apple~CloudDocs/Coursera_PCDProgramming/ParallelProgramming/miniproject_1"/>
+    <property name="user.dir" value="/Users/bosen/Library/Mobile Documents/com~apple~CloudDocs/Coursera_PCDProgramming/ParallelProgramming/miniproject_4"/>
     <property name="java.runtime.version" value="1.8.0_221-b11"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib/endorsed"/>
@@ -63,20 +63,30 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testParSimpleTwoMillion" classname="edu.coursera.parallel.ReciprocalArraySumTest" time="1.13"/>
-  <testcase name="testParSimpleTwoHundredMillion" classname="edu.coursera.parallel.ReciprocalArraySumTest" time="95.961"/>
-  <testcase name="testParManyTaskTwoMillion" classname="edu.coursera.parallel.ReciprocalArraySumTest" time="1.159">
-    <failure message="It was expected that the many-task parallel implementation would run at least 4.800000x faster, but it only achieved 2.400000x speedup" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: It was expected that the many-task parallel implementation would run at least 4.800000x faster, but it only achieved 2.400000x speedup
+  <testcase name="testFuzzyBarrier" classname="edu.coursera.parallel.OneDimAveragingPhaserTest" time="113.983">
+    <failure message="Mismatch on output at element 2 expected:&lt;1.6186464395615483E-282&gt; but was:&lt;0.0&gt;" type="junit.framework.AssertionFailedError"><![CDATA[junit.framework.AssertionFailedError: Mismatch on output at element 2 expected:<1.6186464395615483E-282> but was:<0.0>
 	at junit.framework.Assert.fail(Assert.java:47)
-	at junit.framework.Assert.assertTrue(Assert.java:20)
-	at edu.coursera.parallel.ReciprocalArraySumTest.testParManyTaskTwoMillion(ReciprocalArraySumTest.java:143)
-</failure>
-  </testcase>
-  <testcase name="testParManyTaskTwoHundredMillion" classname="edu.coursera.parallel.ReciprocalArraySumTest" time="81.36">
-    <failure message="It was expected that the many-task parallel implementation would run at least 6.400000x faster, but it only achieved 3.058252x speedup" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: It was expected that the many-task parallel implementation would run at least 6.400000x faster, but it only achieved 3.058252x speedup
-	at junit.framework.Assert.fail(Assert.java:47)
-	at junit.framework.Assert.assertTrue(Assert.java:20)
-	at edu.coursera.parallel.ReciprocalArraySumTest.testParManyTaskTwoHundredMillion(ReciprocalArraySumTest.java:155)
-</failure>
+	at junit.framework.Assert.failNotEquals(Assert.java:280)
+	at junit.framework.Assert.assertEquals(Assert.java:64)
+	at edu.coursera.parallel.OneDimAveragingPhaserTest.checkResult(OneDimAveragingPhaserTest.java:92)
+	at edu.coursera.parallel.OneDimAveragingPhaserTest.parTestHelper(OneDimAveragingPhaserTest.java:122)
+	at edu.coursera.parallel.OneDimAveragingPhaserTest.testFuzzyBarrier(OneDimAveragingPhaserTest.java:139)
+]]></failure>
+    <system-err><![CDATA[Exception in thread "Thread-12" java.lang.IllegalStateException: Attempted arrival of unregistered party for java.util.concurrent.Phaser@3573fdb0[phase = 226 parties = 8 arrived = 8]
+	at java.util.concurrent.Phaser.doArrive(Phaser.java:391)
+	at java.util.concurrent.Phaser.arrive(Phaser.java:634)
+	at edu.coursera.parallel.OneDimAveragingPhaser.lambda$runParallelFuzzyBarrier$1(OneDimAveragingPhaser.java:142)
+	at java.lang.Thread.run(Thread.java:748)
+Exception in thread "Thread-13" java.lang.IllegalStateException: Attempted arrival of unregistered party for java.util.concurrent.Phaser@3573fdb0[phase = 4762 parties = 8 arrived = 8]
+	at java.util.concurrent.Phaser.doArrive(Phaser.java:391)
+	at java.util.concurrent.Phaser.arrive(Phaser.java:634)
+	at edu.coursera.parallel.OneDimAveragingPhaser.lambda$runParallelFuzzyBarrier$1(OneDimAveragingPhaser.java:142)
+	at java.lang.Thread.run(Thread.java:748)
+Exception in thread "Thread-8" java.lang.IllegalStateException: Attempted arrival of unregistered party for java.util.concurrent.Phaser@3573fdb0[phase = 7079 parties = 8 arrived = 8]
+	at java.util.concurrent.Phaser.doArrive(Phaser.java:391)
+	at java.util.concurrent.Phaser.arrive(Phaser.java:634)
+	at edu.coursera.parallel.OneDimAveragingPhaser.lambda$runParallelFuzzyBarrier$1(OneDimAveragingPhaser.java:142)
+	at java.lang.Thread.run(Thread.java:748)
+]]></system-err>
   </testcase>
 </testsuite>
