@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.coursera.parallel.OneDimAveragingPhaserTest" time="113.983" tests="1" errors="0" skipped="0" failures="1">
+<testsuite name="edu.coursera.parallel.OneDimAveragingPhaserTest" time="86.831" tests="1" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib"/>
@@ -63,8 +63,8 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testFuzzyBarrier" classname="edu.coursera.parallel.OneDimAveragingPhaserTest" time="113.983">
-    <failure message="Mismatch on output at element 2 expected:&lt;1.6186464395615483E-282&gt; but was:&lt;0.0&gt;" type="junit.framework.AssertionFailedError"><![CDATA[junit.framework.AssertionFailedError: Mismatch on output at element 2 expected:<1.6186464395615483E-282> but was:<0.0>
+  <testcase name="testFuzzyBarrier" classname="edu.coursera.parallel.OneDimAveragingPhaserTest" time="86.831">
+    <failure message="Mismatch on output at element 262018 expected:&lt;6.237375586888734E-132&gt; but was:&lt;6.237375586888736E-132&gt;" type="junit.framework.AssertionFailedError"><![CDATA[junit.framework.AssertionFailedError: Mismatch on output at element 262018 expected:<6.237375586888734E-132> but was:<6.237375586888736E-132>
 	at junit.framework.Assert.fail(Assert.java:47)
 	at junit.framework.Assert.failNotEquals(Assert.java:280)
 	at junit.framework.Assert.assertEquals(Assert.java:64)
@@ -72,21 +72,5 @@
 	at edu.coursera.parallel.OneDimAveragingPhaserTest.parTestHelper(OneDimAveragingPhaserTest.java:122)
 	at edu.coursera.parallel.OneDimAveragingPhaserTest.testFuzzyBarrier(OneDimAveragingPhaserTest.java:139)
 ]]></failure>
-    <system-err><![CDATA[Exception in thread "Thread-12" java.lang.IllegalStateException: Attempted arrival of unregistered party for java.util.concurrent.Phaser@3573fdb0[phase = 226 parties = 8 arrived = 8]
-	at java.util.concurrent.Phaser.doArrive(Phaser.java:391)
-	at java.util.concurrent.Phaser.arrive(Phaser.java:634)
-	at edu.coursera.parallel.OneDimAveragingPhaser.lambda$runParallelFuzzyBarrier$1(OneDimAveragingPhaser.java:142)
-	at java.lang.Thread.run(Thread.java:748)
-Exception in thread "Thread-13" java.lang.IllegalStateException: Attempted arrival of unregistered party for java.util.concurrent.Phaser@3573fdb0[phase = 4762 parties = 8 arrived = 8]
-	at java.util.concurrent.Phaser.doArrive(Phaser.java:391)
-	at java.util.concurrent.Phaser.arrive(Phaser.java:634)
-	at edu.coursera.parallel.OneDimAveragingPhaser.lambda$runParallelFuzzyBarrier$1(OneDimAveragingPhaser.java:142)
-	at java.lang.Thread.run(Thread.java:748)
-Exception in thread "Thread-8" java.lang.IllegalStateException: Attempted arrival of unregistered party for java.util.concurrent.Phaser@3573fdb0[phase = 7079 parties = 8 arrived = 8]
-	at java.util.concurrent.Phaser.doArrive(Phaser.java:391)
-	at java.util.concurrent.Phaser.arrive(Phaser.java:634)
-	at edu.coursera.parallel.OneDimAveragingPhaser.lambda$runParallelFuzzyBarrier$1(OneDimAveragingPhaser.java:142)
-	at java.lang.Thread.run(Thread.java:748)
-]]></system-err>
   </testcase>
 </testsuite>

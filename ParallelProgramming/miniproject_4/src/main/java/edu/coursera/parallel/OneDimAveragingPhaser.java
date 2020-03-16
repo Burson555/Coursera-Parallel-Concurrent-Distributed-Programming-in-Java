@@ -65,7 +65,7 @@ public final class OneDimAveragingPhaser {
 
                 final int chunkSize = (n + tasks - 1) / tasks;
                 final int left = (i * chunkSize) + 1;
-                int right = (left + chunkSize) - 1;
+                int right = left + chunkSize;
                 if (right > n) right = n;
 
                 for (int iter = 0; iter < iterations; iter++) {
@@ -111,52 +111,61 @@ public final class OneDimAveragingPhaser {
             final double[] myNew, final double[] myVal, final int n,
             final int tasks) {
 
-        Phaser ph = new Phaser(0);
-        ph.bulkRegister(tasks);
+        // Phaser ph = new Phaser(0);
+        // ph.bulkRegister(tasks); // I
+        // Phaser ph = new Phaser(tasks); // II
+        // Phaser ph = new Phaser(0);
+        // for (int i = 0; i < tasks; i++) ph.bulkRegister(1); // III
+        Phaser ph[] = new Phaser[tasks];
+        for (int i = 0; i < tasks; i++) ph[i] = new Phaser(1); // IV
 
         Thread[] threads = new Thread[tasks];
-        for (int ii = 0; ii < tasks; ii++) {
-            int i_thread = ii; // WHY WE NEED THIS LINE?
-            threads[i_thread] = new Thread(() -> {
+        for (int i = 0; i < tasks; i++) {
+            int local_i = i; // WHY WE NEED THIS LINE?
+            
+            threads[local_i] = new Thread(() -> {
 
                 // if we don't have the following two lines
                 // all thread can access myVal and myNew
                 // there will be a data race
-                // where all threads try to change these two pointers
-                double[] threadPrivateMyVal = myVal;
-                double[] threadPrivateMyNew = myNew;
+                // where all threads try to change these two variables
+                double[] thread_local_myVal = myVal;
+                double[] thread_local_myNew = myNew;
 
                 for (int k = 0; k < iterations; k++) {  
 
                     final int chunk_size = (n-1)/tasks + 1;
-                    final int left = i_thread * chunk_size + 1;
-                    int right = left + chunk_size - 1;
-                    // right can't be final because we might change its value later
-                    if (right > n) right = n;
+                    final int left = local_i * chunk_size + 1;
+                    final int right = Integer.min(n, left+chunk_size);
     
-                    threadPrivateMyNew[left] = (threadPrivateMyVal[left-1] 
-                                                + threadPrivateMyVal[left+1])/2.0;
-                    threadPrivateMyNew[right] = (threadPrivateMyVal[right-1] 
-                                                + threadPrivateMyVal[right+1])/2.0;
+                    thread_local_myNew[left] = (thread_local_myVal[left-1] 
+                                                + thread_local_myVal[left+1])/2.0;
+                    thread_local_myNew[right] = (thread_local_myVal[right-1] 
+                                                + thread_local_myVal[right+1])/2.0;
     
-                    ph.arrive();
-                    for (int i = left+1; i < right; i++) 
-                        threadPrivateMyNew[i] = (threadPrivateMyVal[i-1] 
-                                                + threadPrivateMyVal[i+1])/2.0;
-                    ph.awaitAdvance(i_thread);
+                    // int cur_phase = ph.arrive(); // I, II, III
+                    int cur_phase = ph[local_i].arrive(); // IV
+
+                    for (int j = left+1; j < right; j++) 
+                        thread_local_myNew[j] = (thread_local_myVal[j-1] 
+                                                + thread_local_myVal[j+1])/2.0;
+
+                    // ph.awaitAdvance(cur_phase); // I, II, III
+                    if (local_i > 0) ph[local_i-1].awaitAdvance(cur_phase); // IV
+                    if (local_i < tasks-1) ph[local_i+1].awaitAdvance(cur_phase);
     
-                    double temp[] = threadPrivateMyVal;
-                    threadPrivateMyVal = threadPrivateMyNew;
-                    threadPrivateMyNew = threadPrivateMyVal;
+                    double temp[] = thread_local_myVal;
+                    thread_local_myVal = thread_local_myNew;
+                    thread_local_myNew = temp;
                 }
             });
 
-            threads[ii].start();
+            threads[local_i].start();
         }
 
-        for (int i_thread = 0; i_thread < tasks; i_thread++) {
+        for (int i = 0; i < tasks; i++) {
             try {
-                threads[i_thread].join();
+                threads[i].join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
