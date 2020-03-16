@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.coursera.concurrent.SieveTest" time="7.349" tests="2" errors="0" skipped="0" failures="0">
+<testsuite name="edu.coursera.concurrent.SieveTest" time="7.825" tests="2" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib"/>
@@ -63,6 +63,12 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testActorSieveOneHundredThousand" classname="edu.coursera.concurrent.SieveTest" time="1.907"/>
-  <testcase name="testActorSieveTwoHundredThousand" classname="edu.coursera.concurrent.SieveTest" time="5.442"/>
+  <testcase name="testActorSieveOneHundredThousand" classname="edu.coursera.concurrent.SieveTest" time="1.973"/>
+  <testcase name="testActorSieveTwoHundredThousand" classname="edu.coursera.concurrent.SieveTest" time="5.852">
+    <failure message="Expected scalability of 1.600000x going from 4 cores to 8 cores, but found 1.585366x" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Expected scalability of 1.600000x going from 4 cores to 8 cores, but found 1.585366x
+	at junit.framework.Assert.fail(Assert.java:47)
+	at junit.framework.Assert.assertTrue(Assert.java:20)
+	at edu.coursera.concurrent.SieveTest.testActorSieveTwoHundredThousand(SieveTest.java:69)
+</failure>
+  </testcase>
 </testsuite>

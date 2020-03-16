@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: edu.coursera.concurrent.SieveTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.351 sec - in edu.coursera.concurrent.SieveTest
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 7.826 sec <<< FAILURE! - in edu.coursera.concurrent.SieveTest
+testActorSieveTwoHundredThousand(edu.coursera.concurrent.SieveTest)  Time elapsed: 5.852 sec  <<< FAILURE!
+junit.framework.AssertionFailedError: Expected scalability of 1.600000x going from 4 cores to 8 cores, but found 1.585366x
+	at junit.framework.Assert.fail(Assert.java:47)
+	at junit.framework.Assert.assertTrue(Assert.java:20)
+	at edu.coursera.concurrent.SieveTest.testActorSieveTwoHundredThousand(SieveTest.java:69)
+
