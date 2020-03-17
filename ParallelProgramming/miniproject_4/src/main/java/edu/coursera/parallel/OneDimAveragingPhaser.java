@@ -65,7 +65,7 @@ public final class OneDimAveragingPhaser {
 
                 final int chunkSize = (n + tasks - 1) / tasks;
                 final int left = (i * chunkSize) + 1;
-                int right = left + chunkSize;
+                int right = (left + chunkSize) - 1;
                 if (right > n) right = n;
 
                 for (int iter = 0; iter < iterations; iter++) {
@@ -113,11 +113,11 @@ public final class OneDimAveragingPhaser {
 
         // Phaser ph = new Phaser(0);
         // ph.bulkRegister(tasks); // I
-        // Phaser ph = new Phaser(tasks); // II
+        Phaser ph = new Phaser(tasks); // II
         // Phaser ph = new Phaser(0);
         // for (int i = 0; i < tasks; i++) ph.bulkRegister(1); // III
-        Phaser ph[] = new Phaser[tasks];
-        for (int i = 0; i < tasks; i++) ph[i] = new Phaser(1); // IV
+        // Phaser ph[] = new Phaser[tasks];
+        // for (int i = 0; i < tasks; i++) ph[i] = new Phaser(1); // IV
 
         Thread[] threads = new Thread[tasks];
         for (int i = 0; i < tasks; i++) {
@@ -136,23 +136,23 @@ public final class OneDimAveragingPhaser {
 
                     final int chunk_size = (n-1)/tasks + 1;
                     final int left = local_i * chunk_size + 1;
-                    final int right = Integer.min(n, left+chunk_size);
+                    final int right = Integer.min(left+chunk_size-1, n);
     
                     thread_local_myNew[left] = (thread_local_myVal[left-1] 
                                                 + thread_local_myVal[left+1])/2.0;
                     thread_local_myNew[right] = (thread_local_myVal[right-1] 
                                                 + thread_local_myVal[right+1])/2.0;
     
-                    // int cur_phase = ph.arrive(); // I, II, III
-                    int cur_phase = ph[local_i].arrive(); // IV
+                    int cur_phase = ph.arrive(); // I, II, III
+                    // int cur_phase = ph[local_i].arrive(); // IV
 
                     for (int j = left+1; j < right; j++) 
                         thread_local_myNew[j] = (thread_local_myVal[j-1] 
                                                 + thread_local_myVal[j+1])/2.0;
 
-                    // ph.awaitAdvance(cur_phase); // I, II, III
-                    if (local_i > 0) ph[local_i-1].awaitAdvance(cur_phase); // IV
-                    if (local_i < tasks-1) ph[local_i+1].awaitAdvance(cur_phase);
+                    ph.awaitAdvance(cur_phase); // I, II, III
+                    // if (local_i > 0) ph[local_i-1].awaitAdvance(cur_phase);
+                    // if (local_i < tasks-1) ph[local_i+1].awaitAdvance(cur_phase); // IV
     
                     double temp[] = thread_local_myVal;
                     thread_local_myVal = thread_local_myNew;

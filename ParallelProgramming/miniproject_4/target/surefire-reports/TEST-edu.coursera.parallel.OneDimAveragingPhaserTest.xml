@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.coursera.parallel.OneDimAveragingPhaserTest" time="86.831" tests="1" errors="0" skipped="0" failures="1">
+<testsuite name="edu.coursera.parallel.OneDimAveragingPhaserTest" time="230.584" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib"/>
@@ -63,14 +63,5 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testFuzzyBarrier" classname="edu.coursera.parallel.OneDimAveragingPhaserTest" time="86.831">
-    <failure message="Mismatch on output at element 262018 expected:&lt;6.237375586888734E-132&gt; but was:&lt;6.237375586888736E-132&gt;" type="junit.framework.AssertionFailedError"><![CDATA[junit.framework.AssertionFailedError: Mismatch on output at element 262018 expected:<6.237375586888734E-132> but was:<6.237375586888736E-132>
-	at junit.framework.Assert.fail(Assert.java:47)
-	at junit.framework.Assert.failNotEquals(Assert.java:280)
-	at junit.framework.Assert.assertEquals(Assert.java:64)
-	at edu.coursera.parallel.OneDimAveragingPhaserTest.checkResult(OneDimAveragingPhaserTest.java:92)
-	at edu.coursera.parallel.OneDimAveragingPhaserTest.parTestHelper(OneDimAveragingPhaserTest.java:122)
-	at edu.coursera.parallel.OneDimAveragingPhaserTest.testFuzzyBarrier(OneDimAveragingPhaserTest.java:139)
-]]></failure>
-  </testcase>
+  <testcase name="testFuzzyBarrier" classname="edu.coursera.parallel.OneDimAveragingPhaserTest" time="230.584"/>
 </testsuite>
