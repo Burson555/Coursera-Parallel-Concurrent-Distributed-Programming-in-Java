@@ -55,9 +55,9 @@ public final class PageRank {
         JavaPairRDD<Integer, Double> new_ranks = 
                         sites.
                         join(ranks).
-                        flatMapToPair(kv -> {
-                            Website curr_site = kv._2()._1();
-                            double rank = kv._2()._2();
+                        flatMapToPair(kv_pair -> {
+                            Website curr_site = kv_pair._2()._1();
+                            double rank = kv_pair._2()._2();
                             List<Tuple2<Integer, Double>> res = new LinkedList<>();
                             int num_edges = curr_site.getNEdges();
                             Iterator iter = curr_site.edgeIterator();
@@ -66,8 +66,8 @@ public final class PageRank {
                                 Double weight = rank/(double)num_edges;
                                 res.add(new Tuple2(next_site, weight));
                             }
-                            return res;
-                        });
+                            return res; // note the type of res is List<Tuple2<>>
+                        }); // the result if a list of (site_ID, weight from one other site)
 
         return new_ranks.reduceByKey((a, b) -> a + b)
                         .mapValues(val -> 0.15 + 0.85*val);
